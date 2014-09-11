@@ -1,3 +1,11 @@
 <h1>Kramerks</h1>
 <p>Social bookmarking with email integration</p>
-<button><%= link_to "Login", new_user_session_path %> </button>
+
+<% if user_signed_in? %>
+	<button><%= link_to "Logout", destroy_user_session_path, :method => :delete %> </button>
+	<% else %>
+  <button><%= link_to 'Login', new_user_session_path %></button>
+  </br>
+  <button><%= link_to 'Sign up', new_user_registration_path %></button>
+<% end %>
+
