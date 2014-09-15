@@ -10,7 +10,7 @@ feature 'create bookmark' do
 		visit bookmarks_path
 		click_link 'New Bookmark'
 		fill_in 'Title', with: 'New Bookmark'
-		fill_in 'Url', with: 'http://www.coolwebsite.com'
+		fill_in 'Url', with: 'www.coolwebsite.com'
 		click_button 'Create Bookmark'
 
 		expect(page).to have_content('Bookmark was successfully created')
