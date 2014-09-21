@@ -36,6 +36,7 @@ end
 group :production do 
 	#as required by Heroku
 	gem 'pg'
+	gem 'rails_12factor'
 end
 
 #used to validate urls
