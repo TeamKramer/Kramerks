@@ -1,0 +1,11 @@
+{
+  "name": "Kramerks",
+  "description": "A social bookmarking app with email integration",
+  "repository": "https://github.com/TeamKramer/Kramerks",
+  "logo": "http://managementscience.biz/wp-content/uploads/2014/09/ruby-on-rails-logo.png",
+  "keywords": ["rails", "bookmarking", "tool"],
+  "addons": ["sendgrid"],
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  }
+}
