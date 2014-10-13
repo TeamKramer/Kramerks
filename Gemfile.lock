@@ -53,6 +53,13 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.1)
+    factory_girl (4.4.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.4.1)
+      factory_girl (~> 4.4.0)
+      railties (>= 3.0.0)
+    faker (1.4.3)
+      i18n (~> 0.5)
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
@@ -76,6 +83,7 @@ GEM
     multi_json (1.10.1)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
+    orderly (0.0.2)
     orm_adapter (0.5.0)
     pg (0.17.1)
     polyglot (0.3.5)
@@ -167,10 +175,13 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   devise
+  factory_girl_rails
+  faker
   figaro
   jbuilder (~> 2.0)
   jquery-rails
   launchy
+  orderly
   pg
   public_suffix
   rails (= 4.1.5)

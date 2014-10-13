@@ -1,10 +1,8 @@
 class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
 
-  # GET /bookmarks
-  # GET /bookmarks.json
   def index
-    @bookmarks = Bookmark.all
+    @bookmarks = Bookmark.order_by_desc_date
   end
 
   # GET /bookmarks/1

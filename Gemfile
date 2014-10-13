@@ -23,20 +23,30 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
+
 gem 'devise'
 gem 'figaro'
 
-group :development do
-  gem 'rspec-rails'
-  gem 'capybara'
+group :test do
+  gem 'factory_girl_rails'
   gem 'launchy'
+  gem 'capybara'
+  gem 'orderly'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'faker'
+end
+
+group :development do
   gem 'sqlite3'
 end
 
 group :production do 
-	#as required by Heroku
-	gem 'pg'
-	gem 'rails_12factor'
+  #as required by Heroku
+  gem 'pg'
+  gem 'rails_12factor'
 end
 
 #used to validate urls
