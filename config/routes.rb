@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :bookmarks
+  resources :bookmarks do
+    resources :favorites, only: [:create, :destroy]
+  end
 
   devise_for :users
   get 'welcome/index'

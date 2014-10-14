@@ -4,6 +4,7 @@ class Bookmark < ActiveRecord::Base
   scope :order_by_desc_date, lambda { order('created_at DESC') }
   
 	validate :url_has_valid_tld
+	has_many :favorites, dependent: :destroy
 
 	def url_has_valid_tld
 		unless PublicSuffix.valid?(url)

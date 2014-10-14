@@ -1,0 +1,7 @@
+<div class="favorite">
+ <% if favorite = current_user.favorited(bookmark) %> 
+   Favorited
+ <% else %>
+  <%= link_to 'Favorite', [bookmark, Favorite.new], method: :post %> 
+ <% end %>
+</div>
