@@ -27,6 +27,8 @@ gem 'spring',        group: :development
 gem 'devise'
 gem 'figaro'
 
+gem 'acts-as-taggable-on'
+
 group :test do
   gem 'factory_girl_rails'
   gem 'launchy'

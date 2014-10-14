@@ -1,5 +1,7 @@
 class Bookmark < ActiveRecord::Base
   belongs_to :user
+  acts_as_taggable
+  
   # default_scope { order('created_at DESC') }
   scope :order_by_desc_date, lambda { order('created_at DESC') }
   

@@ -2,7 +2,14 @@ class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bookmarks = Bookmark.order_by_desc_date
+    # @bookmarks = Bookmark.order_by_desc_date
+
+    if params[:tag]
+      @bookmarks = Bookmark.tagged_with(params[:tag]).order_by_desc_date
+    else
+      @bookmarks = Bookmark.all.order_by_desc_date
+    end
+
   end
 
   # GET /bookmarks/1
@@ -67,6 +74,6 @@ class BookmarksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bookmark_params
-      params.require(:bookmark).permit(:title, :url)
+      params.require(:bookmark).permit(:title, :url, :tag_list)
     end
 end

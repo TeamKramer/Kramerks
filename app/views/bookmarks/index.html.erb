@@ -9,7 +9,21 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
+  <div id="tag_cloud">
+    <% @hash_tags = [] %>
+    <% tag_cloud Bookmark.tag_counts, %w[s m l] do |tag, css_class| %>    
+      <% @hash_tags << tag.name %>
+    <% end %>
+    
+    <% @hash_tags.each do |hash_tag| %>
+      <br />
+      <%= hash_tag %>
+      <% (Bookmark.tagged_with([hash_tag])).each do |bookmark| %><br />
+        <%= bookmark.title %>
+      <% end %>
+    <% end %>
+  </div>
+  
   <tbody>
     <% @bookmarks.each do |bookmark| %>
       <tr>
@@ -19,6 +33,9 @@
         <td><%= link_to 'Show', bookmark %></td>
         <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
         <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          Tags: <%= raw bookmark.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+        </td>
       </tr>
     <% end %>
   </tbody>
