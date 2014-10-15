@@ -24,6 +24,15 @@ users = User.all
   )
 end
 
+# Create a default user
+default_user = User.new
+default_user.email =  "user@test.com"
+default_user.password = "password"
+default_user.password_confirmation = "password"
+default_user.skip_confirmation!
+default_user.save!
+
 puts "Seed finished."
 puts "#{User.count} users created."
 puts "#{Bookmark.count} bookmarks created."
+puts "Default user created: user@test.com:password"
