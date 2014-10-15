@@ -4,3 +4,5 @@ rvm: '2.1'
 
 script:
   - bundle exec rspec --format progress
+notifications:
+  secure: "AB6pwCYIPCAaYD6qurMHFUzGgTI5KV1AH803yL3Ic3yetp5HXRe6Y1yTBVH+dcEN3C2lHux5i2qzFsP1riGod6aE20JDLzs3kRe/Z/3NCdmNTdQDIXSRFq3jeewiM/AFKn6/s2i8k+0v1iQa+wT1mUpa2    jHw6ItYPP05HTVMA4A="
