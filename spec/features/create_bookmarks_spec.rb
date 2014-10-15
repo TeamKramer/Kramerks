@@ -7,6 +7,13 @@ require 'rails_helper'
 feature 'create bookmark' do
 	
 	scenario 'successfully' do
+		user = create(:user)
+		visit root_path
+    click_link 'Login'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign in'
+
 		visit bookmarks_path
 		click_link 'New Bookmark'
 		fill_in 'Title', with: 'New Bookmark'
