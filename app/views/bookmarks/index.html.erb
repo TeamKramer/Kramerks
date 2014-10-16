@@ -1,46 +1,20 @@
 <h1>Listing bookmarks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Url</th>
-      <th>Date Added</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
   <div id="tag_cloud">
     <% @hash_tags = [] %>
-    <% tag_cloud Bookmark.tag_counts, %w[s m l] do |tag, css_class| %>    
+    <% tag_cloud Bookmark.tag_counts, %w[s m l] do |tag, css_class| %>
       <% @hash_tags << tag.name %>
     <% end %>
-    
+
     <% @hash_tags.each do |hash_tag| %>
       <br />
-      <%= hash_tag %>
+      <h2><%= link_to "##{hash_tag}", "#{hash_tag}_path" %></h2>
       <% (Bookmark.tagged_with([hash_tag])).each do |bookmark| %><br />
-        <%= bookmark.title %>
+        <%= link_to bookmark.title, bookmark %>
       <% end %>
     <% end %>
   </div>
-  
-  <tbody>
-    <% @bookmarks.each do |bookmark| %>
-      <tr>
-        <td><%= bookmark.title %></td>
-        <td><%= bookmark.url %></td>
-        <td><%= bookmark.created_at %></td>
-        <td><%= link_to 'Show', bookmark %></td>
-        <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
-        <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td>
-          Tags: <%= raw bookmark.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Bookmark', new_bookmark_path %>
+  <% @bookmarks.each do |bookmark| %>
+    <%= link_to bookmark.title, bookmark %><br />
+  <% end %>

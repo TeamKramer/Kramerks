@@ -2,13 +2,13 @@ class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
 
   def index
-    # @bookmarks = Bookmark.order_by_desc_date
+    @bookmarks = Bookmark.order_by_desc_date
 
-    if params[:tag]
-      @bookmarks = Bookmark.tagged_with(params[:tag]).order_by_desc_date
-    else
-      @bookmarks = Bookmark.all.order_by_desc_date
-    end
+    # if params[:tag]
+    #   @bookmarks = Bookmark.tagged_with(params[:tag]).order_by_desc_date
+    # else
+    #   @bookmarks = Bookmark.all.order_by_desc_date
+    # end
 
   end
 
