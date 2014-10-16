@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20141014205245) do
     t.integer  "user_id"
   end
 
+  create_table "favorites", force: true do |t|
+    t.integer  "bookmark_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorites", ["bookmark_id"], name: "index_favorites_on_bookmark_id"
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
+
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -29,7 +39,7 @@ ActiveRecord::Schema.define(version: 20141014205245) do
     t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
-    t.datetime "updated_at"
+  end
 
   add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
@@ -40,7 +50,6 @@ ActiveRecord::Schema.define(version: 20141014205245) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
-  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
