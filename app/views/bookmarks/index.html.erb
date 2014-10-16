@@ -1,20 +1,15 @@
 <h1>Listing bookmarks</h1>
 
-  <div id="tag_cloud">
-    <% @hash_tags = [] %>
-    <% tag_cloud Bookmark.tag_counts, %w[s m l] do |tag, css_class| %>
-      <% @hash_tags << tag.name %>
+  <% if @hashtag %>
+    <h3> <%= @hashtag %> </h3>
+    <% @bookmarks.each do |bmark| %>
+      <p> <%= link_to bmark.title, bmark %> </p>  
     <% end %>
-
-    <% @hash_tags.each do |hash_tag| %>
-      <br />
-      <h2><%= link_to "##{hash_tag}", "#{hash_tag}_path" %></h2>
-      <% (Bookmark.tagged_with([hash_tag])).each do |bookmark| %><br />
-        <%= link_to bookmark.title, bookmark %>
+  <% else %>
+    <% @hashtags.each do |h| %>
+      <h3> <%= link_to h.name, h.name %> </h3>
+    <% @bmarklib[h].each do |b|%>
+      <p> <%= link_to b.title, b %> </p>
       <% end %>
-    <% end %>
-  </div>
-
-  <% @bookmarks.each do |bookmark| %>
-    <%= link_to bookmark.title, bookmark %><br />
+  <% end %>
   <% end %>

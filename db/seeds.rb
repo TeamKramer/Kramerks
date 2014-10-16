@@ -1,5 +1,5 @@
 require 'faker'
-
+ 
 # Create Users
 5.times do
   user = User.new(
@@ -10,9 +10,15 @@ require 'faker'
   # user.created_at Faker::Time.between(14.days.ago, Time.now)
   user.save!
 end
-
+ 
 users = User.all
-
+ 
+# Create list of hashtags
+hash_tags = ["#{Faker::Lorem.characters(6)}",
+             "#{Faker::Lorem.characters(6)}",
+             "#{Faker::Lorem.characters(6)}",
+             "#{Faker::Lorem.characters(6)}"]
+ 
 # Create Bookmarks
 25.times do
   Bookmark.create!(
@@ -22,6 +28,9 @@ users = User.all
     url:      "#{Faker::Lorem.characters(6)}.com",
     created_at: Faker::Time.between(14.days.ago, Time.now)
   )
+  b = Bookmark.last
+  b.tag_list = hash_tags.sample, hash_tags.sample
+  b.save
 end
 
 # Create a default user
