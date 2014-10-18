@@ -14,16 +14,17 @@ end
 users = User.all
  
 # Create list of hashtags
-hash_tags = ["#{Faker::Lorem.characters(6)}",
-             "#{Faker::Lorem.characters(6)}",
-             "#{Faker::Lorem.characters(6)}",
-             "#{Faker::Lorem.characters(6)}"]
+hash_tags = ["#{Faker::Commerce.department(1)}",
+             "#{Faker::Commerce.department(1)}",
+             "#{Faker::Commerce.department(1)}",
+             "#{Faker::Commerce.department(1)}",
+             "#{Faker::Commerce.department(1)}"]
  
 # Create Bookmarks
 25.times do
   Bookmark.create!(
     user:     users.sample,
-    title:    Faker::Name.title,
+    title:    Faker::Commerce.product_name,
     # url:      Faker::Internet.url waiting for bux fix
     url:      "#{Faker::Lorem.characters(6)}.com",
     created_at: Faker::Time.between(14.days.ago, Time.now)

@@ -1,15 +1,20 @@
 <h1>Listing bookmarks</h1>
 
 <% if @hashtag %>
-  <h3><%= @hashtag %></h3>
-  <% @bookmarks.each do |bmark| %>
-    <p><%= link_to bmark.title, bmark %></p>
+  <h2><%= @hashtag %></h2>
+  <% @bookmarks.each do |bookmark| %>
+    <p><%= link_to bookmark.title, bookmark %></p>
   <% end %>
 <% else %>
   <% @hashtags.each do |hashtag| %>
-    <h3><%= link_to hashtag.name, hashtag.name %></h3>
+    <h2><%= link_to "##{hashtag.name}", hashtag.name %></h2>
     <% @all_bookmarks[hashtag].each do |bookmark| %>
       <p><%= link_to bookmark.title, bookmark %></p>
+      <p><%= bookmark.created_at %></p>
+      <p><%= bookmark.updated_at %></p>
     <% end %>
   <% end %>
 <% end %>
+
+<%= link_to "New Bookmark", new_bookmark_path %>
+
