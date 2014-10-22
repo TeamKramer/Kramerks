@@ -35,6 +35,7 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  #config.include(Capybara::Webkit::RspecMatchers, :type => :feature)
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
@@ -50,4 +51,7 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
   config.include FactoryGirl::Syntax::Methods
+
+  #Refactoring to Modules for Capybara and Rspec
+  #config.include Features, type: :feature
 end

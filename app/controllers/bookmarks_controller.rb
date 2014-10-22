@@ -2,7 +2,23 @@ class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bookmarks = Bookmark.order_by_desc_date
+
+    if params[:tag]
+      @hashtag = "##{params[:tag]}"
+      @bookmarks = Bookmark.tagged_with(params[:tag]).order_by_desc_date
+    else
+      @all_bookmarks = {}
+      @hashtags = ActsAsTaggableOn::Tag.all.order(:name)
+      @hashtags.each do |hashtag|
+        temp_array = []
+        Bookmark.tagged_with(hashtag).each do |bookmark|
+          temp_array << bookmark
+          temp_array.sort! { |a,b| a.created_at <=> b.created_at }
+        end
+        @all_bookmarks[hashtag] = temp_array
+      end
+    end
+
   end
 
   # GET /bookmarks/1
@@ -67,6 +83,6 @@ class BookmarksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bookmark_params
-      params.require(:bookmark).permit(:title, :url)
+      params.require(:bookmark).permit(:title, :url, :tag_list)
     end
 end

@@ -27,16 +27,19 @@ gem 'spring',        group: :development
 gem 'devise'
 gem 'figaro'
 
+gem 'acts-as-taggable-on'
+
 group :test do
-  gem 'factory_girl_rails'
-  gem 'launchy'
   gem 'capybara'
+  gem 'launchy'
   gem 'orderly'
 end
 
 group :development, :test do
+  gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'faker'
+  gem 'pry'
 end
 
 group :development do

@@ -1,29 +1,20 @@
 <h1>Listing bookmarks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Url</th>
-      <th>Date Added</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @bookmarks.each do |bookmark| %>
-      <tr>
-        <td><%= bookmark.title %></td>
-        <td><%= bookmark.url %></td>
-        <td><%= bookmark.created_at %></td>
-        <td><%= link_to 'Show', bookmark %></td>
-        <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
-        <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<% if @hashtag %>
+  <h2><%= @hashtag %></h2>
+  <% @bookmarks.each do |bookmark| %>
+    <p><%= link_to bookmark.title, bookmark %></p>
+  <% end %>
+<% else %>
+  <% @hashtags.each do |hashtag| %>
+    <h2><%= link_to "##{hashtag.name}", hashtag.name %></h2>
+    <% @all_bookmarks[hashtag].each do |bookmark| %>
+      <p><%= link_to bookmark.title, bookmark %></p>
+      <p><%= bookmark.created_at %></p>
+      <p><%= bookmark.updated_at %></p>
     <% end %>
-  </tbody>
-</table>
+  <% end %>
+<% end %>
 
-<br>
+<%= link_to "New Bookmark", new_bookmark_path %>
 
-<%= link_to 'New Bookmark', new_bookmark_path %>

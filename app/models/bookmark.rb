@@ -1,14 +1,24 @@
 class Bookmark < ActiveRecord::Base
   belongs_to :user
-  # default_scope { order('created_at DESC') }
-  scope :order_by_desc_date, lambda { order('created_at DESC') }
-  
-	validate :url_has_valid_tld
-	has_many :favorites, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
-	def url_has_valid_tld
-		unless PublicSuffix.valid?(url)
-			errors.add(:url, "URL does not end in TLD")
-		end
-	end
+  acts_as_taggable
+  after_initialize :init
+
+  validate :url_has_valid_tld
+
+  scope :order_by_desc_date, lambda { order('created_at DESC') }
+
+
+  private
+
+  def url_has_valid_tld
+    unless PublicSuffix.valid?(url)
+      errors.add(:url, "URL does not end in TLD")
+    end
+  end
+
+  def init
+    self.tag_list.add("Give me a tag!") if self.tag_list == [] 
+  end
 end
