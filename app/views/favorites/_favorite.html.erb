@@ -1,6 +1,6 @@
 <div class="favorite">
  <% if favorite = current_user.favorited(bookmark) %> 
-   Favorited
+  <%= link_to 'Unfavorite', [bookmark, favorite], method: :delete %>
  <% else %>
   <%= link_to 'Favorite', [bookmark, Favorite.new], method: :post %> 
  <% end %>

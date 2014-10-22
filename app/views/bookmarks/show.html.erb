@@ -12,4 +12,9 @@
 
 <%= link_to 'Edit', edit_bookmark_path(@bookmark) %> |
 <%= link_to 'Back', bookmarks_path %>
-<%= render partial: 'favorites/favorite', locals: { bookmark: @bookmark } if user_signed_in? %> 
+<% if user_signed_in? %>
+  <%= render partial: 'favorites/favorite', locals: { bookmark: @bookmark } %> 
+<% else %>
+  | <%= link_to ' Log in', new_user_session_path %> or 
+  <%= link_to 'Sign up', new_user_registration_path %> to favorite.
+<% end %>

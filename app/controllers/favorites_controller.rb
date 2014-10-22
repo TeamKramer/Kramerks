@@ -9,4 +9,15 @@ class FavoritesController < ApplicationController
       render :show
     end
   end
+
+  def destroy
+    @bookmark = Bookmark.find(params[:bookmark_id])
+    favorite = current_user.favorites.find(params[:id])
+
+    if favorite.destroy
+      redirect_to @bookmark
+    else
+      render :show
+    end
+  end
 end
