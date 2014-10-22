@@ -7,7 +7,7 @@ feature 'create favorite' do
 
   scenario 'favorite a bookmark' do
     user = create(:user)
-    bookmark = create(:bookmark, )
+    bookmark = create(:bookmark)
     #User logs in
     visit new_user_session_path
     fill_in 'Email', with: user.email
