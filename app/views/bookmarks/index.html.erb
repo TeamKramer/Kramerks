@@ -10,8 +10,6 @@
     <h2><%= link_to "##{hashtag.name}", hashtag.name %></h2>
     <% @all_bookmarks[hashtag].each do |bookmark| %>
       <p><%= link_to bookmark.title, bookmark %></p>
-      <p><%= bookmark.created_at %></p>
-      <p><%= bookmark.updated_at %></p>
     <% end %>
   <% end %>
 <% end %>
