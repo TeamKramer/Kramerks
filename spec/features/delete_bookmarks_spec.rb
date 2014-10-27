@@ -16,10 +16,9 @@ feature "delete bookmarks" do
 
     visit bookmarks_path
     click_on bookmark.title
-    click_link "Delete bookmark"
+    click_link "Delete"
 
-    visit bookmarks_path
-    expect(page).to not_have(bookmark.title)
+    expect(page).to have_content("Bookmark was successfully destroyed.")
     
   end
 end
