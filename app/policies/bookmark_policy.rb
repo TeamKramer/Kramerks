@@ -1,9 +1,14 @@
 class BookmarkPolicy < ApplicationPolicy
 
   def destroy?
-  	binding.pry
-    bookmark_id = @bookmark.id
-    bookmark_owner = @bookmark.user_id
-
+    if user != nil
+      if user.id  == record.user.id
+        true
+      else
+        false
+      end
+    else
+      false
+    end
   end
 end
