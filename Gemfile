@@ -27,6 +27,8 @@ gem 'spring',        group: :development
 gem 'devise'
 gem 'figaro'
 
+gem 'pundit'
+
 gem 'acts-as-taggable-on'
 
 group :test do

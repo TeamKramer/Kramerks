@@ -2,7 +2,7 @@ class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
 
   def index
-
+    
     if params[:tag]
       @hashtag = "##{params[:tag]}"
       @bookmarks = Bookmark.tagged_with(params[:tag]).order_by_desc_date
@@ -69,6 +69,7 @@ class BookmarksController < ApplicationController
   # DELETE /bookmarks/1.json
   def destroy
     @bookmark.destroy
+    authorize @bookmark
     respond_to do |format|
       format.html { redirect_to bookmarks_url, notice: 'Bookmark was successfully destroyed.' }
       format.json { head :no_content }
