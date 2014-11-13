@@ -8,6 +8,7 @@ require 'rails_helper'
 feature 'display bookmarks' do
 
   scenario 'using a hashtag' do
+    create_user_and_login
     create_bookmark("lion", "www.lion.com", "animals")
     create_bookmark("jupiter", "www.jupiter.com", "planets")
 
@@ -29,4 +30,14 @@ feature 'display bookmarks' do
     fill_in 'Tags (separated by commas)', with: tags 
     click_button 'Create Bookmark'
   end
+
+  def create_user_and_login
+    user = create(:user)
+    visit root_path
+    click_link 'Login'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign in'
+  end
+
 end

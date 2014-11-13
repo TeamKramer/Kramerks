@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :favorites, dependent: :destroy
+  has_many :bookmarks
 
   def favorited(bookmark)
     favorites.where(bookmark_id: bookmark.id).first

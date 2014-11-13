@@ -96,6 +96,8 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     public_suffix (1.4.6)
+    pundit (0.3.0)
+      activesupport (>= 3.0.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -195,6 +197,7 @@ DEPENDENCIES
   pg
   pry
   public_suffix
+  pundit
   rails (= 4.1.5)
   rails_12factor
   rspec-rails
